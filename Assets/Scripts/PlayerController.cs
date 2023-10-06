@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         count = 0;
         winText.text = "";
-        SetCountText ();
-    
+        SetCountText();
     }
 
     void OnMove(InputValue value)
@@ -30,14 +29,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
-
         GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+        
+        SetCountText();
     }
 
     private void SetCountText()
     {
         scoreText.text = "Score: " + count.ToString();
-        if(count >= numPickups)
+        if (count >= numPickups)
         {
             winText.text = "You win! :)";
         }
