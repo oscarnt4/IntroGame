@@ -1210,6 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1309557034}
+<<<<<<< HEAD
 --- !u!1001 &1024027498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1396,6 +1397,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4774536825005258174, guid: 1dbf06c8396b92b41b74425c56cd4731, type: 3}
   m_PrefabInstance: {fileID: 1284316822}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> b8b3fa044e50730d7a28e4cbf63ab568dfc976d3
 --- !u!1 &1309557034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveValue: {x: 0, y: 0}
   speed: 500
+<<<<<<< HEAD
 --- !u!1001 &1351081320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1637,6 +1641,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4774536825005258174, guid: 1dbf06c8396b92b41b74425c56cd4731, type: 3}
   m_PrefabInstance: {fileID: 1351081320}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> b8b3fa044e50730d7a28e4cbf63ab568dfc976d3
 --- !u!1 &1517511132
 GameObject:
   m_ObjectHideFlags: 0
