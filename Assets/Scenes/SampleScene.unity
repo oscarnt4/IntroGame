@@ -1210,7 +1210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1309557034}
-<<<<<<< HEAD
 --- !u!1001 &1024027498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1578,7 +1577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveValue: {x: 0, y: 0}
   speed: 500
-<<<<<<< HEAD
 --- !u!1001 &1351081320
 PrefabInstance:
   m_ObjectHideFlags: 0
