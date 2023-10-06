@@ -877,7 +877,7 @@ Transform:
   m_GameObject: {fileID: 596187901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2226,6 +2226,9 @@ MonoBehaviour:
   speed: 500
   scoreText: {fileID: 241215160}
   winText: {fileID: 1108302808}
+  positionText: {fileID: 176534722}
+  velocityText: {fileID: 921879360}
+  pickUpDistanceText: {fileID: 206230552}
 --- !u!4 &1363532111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4774536825005258174, guid: 1dbf06c8396b92b41b74425c56cd4731, type: 3}
