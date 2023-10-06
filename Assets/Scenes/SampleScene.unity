@@ -1115,7 +1115,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1197,6 +1196,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,6 +1398,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> b8b3fa044e50730d7a28e4cbf63ab568dfc976d3
+=======
+>>>>>>> parent of b4caed7 (Attached scripts to player and camera)
 --- !u!1 &1309557034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1414,6 @@ GameObject:
   - component: {fileID: 1309557036}
   - component: {fileID: 1309557035}
   - component: {fileID: 1309557040}
-  - component: {fileID: 1309557041}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1563,6 +1564,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<< HEAD
 --- !u!114 &1309557041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1643,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> b8b3fa044e50730d7a28e4cbf63ab568dfc976d3
+=======
+>>>>>>> parent of b4caed7 (Attached scripts to player and camera)
 --- !u!1 &1517511132
 GameObject:
   m_ObjectHideFlags: 0
