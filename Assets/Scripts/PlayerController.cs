@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector2 moveValue;
+    private Vector2 moveValue;
     public float speed;
     private int count;
 
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PickUp")
+        if (other.gameObject.tag == "PickUP")
         {
             other.gameObject.SetActive(false);
             count++;
