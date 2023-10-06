@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     private Vector2 moveValue;
     public float speed;
     private int count;
+    private int numPickups = 16;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI winText;
 
     void Start()
     {
         count = 0;
+        winText.text = "";
+        SetCountText ();
+    
     }
 
     void OnMove(InputValue value)
@@ -24,6 +32,15 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
 
         GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
+    }
+
+    private void SetCountText()
+    {
+        scoreText.text = "Score: " + count.ToString();
+        if(count >= numPickups)
+        {
+            winText.text = "You win! :)";
+        }
     }
 
     void OnTriggerEnter(Collider other)
