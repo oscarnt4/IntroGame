@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        count  0;
+        count = 0;
     }
 
     void OnMove(InputValue value)
