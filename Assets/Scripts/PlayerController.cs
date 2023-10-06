@@ -12,10 +12,16 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private int count;
     private int numPickups = 16;
+    private Vector3 velocity;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
     public TextMeshProUGUI positionText;
     public TextMeshProUGUI velocityText;
+    public TextMeshProUGUI pickUpDistanceText;
+    private GameObject[] PickUps;
+    private LineRenderer lineRenderer;
+    private bool distanceMode = false;
+    private bool visionMode = false;
 
     void Start()
     {
@@ -23,7 +29,11 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         positionText.text = "";
         velocityText.text = "";
+        pickUpDistanceText.text = "";
         oldPosition = new Vector3(0, 0, 0);
+        PickUps = GameObject.FindGameObjectsWithTag("PickUP");
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
+        RenderLine(new Vector3(0,0,0), new Vector3(0,0,0));
         SetCountText();
     }
 
@@ -32,13 +42,38 @@ public class PlayerController : MonoBehaviour
         moveValue = value.Get<Vector2>();
     }
 
+    private void OnDebugMode(InputValue value)
+    {
+        if(!distanceMode && !visionMode)
+        {
+            distanceMode = true;
+        } else if(distanceMode)
+        {
+            distanceMode = false;
+            visionMode = true;
+        } else
+        {
+            distanceMode = false;
+            visionMode = false;
+            RenderLine(new Vector3(0,0,0), new Vector3(0, 0, 0));
+        }
+    }
+
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
         GetComponent<Rigidbody>().AddForce(movement * speed * Time.fixedDeltaTime);
 
         SetCountText();
-        SetPositionVelocityText();
+        if (distanceMode)
+        {
+            SetPositionVelocityText();
+            SetPickUpDistanceText();
+        }
+        if (visionMode)
+        {
+            VisionDebug();
+        }
     }
 
     private void SetCountText()
@@ -52,11 +87,77 @@ public class PlayerController : MonoBehaviour
 
     private void SetPositionVelocityText()
     {
-        Vector3 posDiff = transform.position - oldPosition;
-        velocityText.text = (posDiff / Time.fixedDeltaTime).magnitude.ToString();
-        positionText.text = transform.position.ToString() + " m/s";
+        CalculateVelocity();
+        velocityText.text = velocity.magnitude.ToString() + " m/s";
+        positionText.text = transform.position.ToString();
+    }
 
+    private void CalculateVelocity()
+    {
+        velocity = ((transform.position - oldPosition) / Time.fixedDeltaTime);
         oldPosition = transform.position;
+    }
+
+    private void SetPickUpDistanceText()
+    {
+        float closestDistance = 1000f;
+        GameObject closestPickUp = null;
+        foreach(GameObject pickUp in PickUps)
+        {
+            pickUp.GetComponent<Renderer>().material.color = Color.white;
+            if (pickUp.activeSelf)
+            {
+                float currentDistance = Vector3.Distance(transform.position, pickUp.transform.position);
+                if (currentDistance < closestDistance)
+                {
+                    closestDistance = currentDistance;
+                    closestPickUp = pickUp;
+                }
+            }
+        }
+        if (closestPickUp != null)
+        {
+            RenderLine(transform.position, closestPickUp.transform.position);
+            closestPickUp.GetComponent<Renderer>().material.color = Color.blue;
+            pickUpDistanceText.text = closestDistance.ToString() + " m";
+        }
+        else
+        {
+            lineRenderer.enabled = false;
+        }
+    }
+
+    private void RenderLine(Vector3 start, Vector3 end)
+    {
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
+    }
+
+    private void VisionDebug()
+    {
+
+        positionText.text = "";
+        velocityText.text = "";
+        pickUpDistanceText.text = "";
+        CalculateVelocity();
+        RenderLine(transform.position, transform.position + velocity);
+
+        foreach(GameObject pickUp in PickUps)
+        {
+            pickUp.GetComponent<Renderer>().material.color = Color.white;
+        }
+
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, velocity*1000, out hit))
+        {
+            if(hit.transform.tag == "PickUP")
+            {
+                hit.transform.GetComponent<Renderer>().material.color = Color.green;
+                hit.transform.LookAt(transform.position);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -68,5 +169,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+
 }
