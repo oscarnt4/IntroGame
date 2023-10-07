@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 oldPosition;
     public float speed;
     private int count;
-    private int numPickups = 16;
+    private int numPickups;
     private Vector3 velocity;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
         pickUpDistanceText.text = "";
         oldPosition = new Vector3(0, 0, 0);
         PickUps = GameObject.FindGameObjectsWithTag("PickUP");
+        numPickups = PickUps.Length;
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         RenderLine(new Vector3(0,0,0), new Vector3(0,0,0));
         SetCountText();
@@ -44,6 +45,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDebugMode(InputValue value)
     {
+        foreach(GameObject pickUp in PickUps)
+        {
+            pickUp.GetComponent<Renderer>().material.color = Color.white;
+        }
         if(!distanceMode && !visionMode)
         {
             distanceMode = true;
