@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
 
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, velocity*1000, out hit))
+        if(Physics.SphereCast(transform.position, 0.5f,  velocity, out hit, Mathf.Infinity))
         {
             if(hit.transform.tag == "PickUP")
             {
